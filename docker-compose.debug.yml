@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  app:
+    build: .
+    depends_on:
+    - redis
+    entrypoint: yarn debug
+    environment:
+    - CRONTZ=Europe/Rome
+    - RATES_API=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
+    - REDIS_HOST=redis
+    - REDIS_TTL=120
+    - REF_CURRENCY=EUR
+    ports:
+    - 8080:8080
+    - 9229:9229
+    restart: always
+  
+  redis:
+    image: redis:5
+    container_name: redis
+    command: redis-server --appendonly yes
+    restart: always
+    volumes:
+    - $PWD/.docker/redis-debug:/data
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: redis-commander
+    hostname: redis-commander
+    environment:
+    - REDIS_HOSTS=local:redis:6379
+    ports:
+    - 8081:8081
+    restart: always

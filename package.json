@@ -1,0 +1,39 @@
+{
+  "name": "currency-converter",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js",
+    "debug": "node --inspect-brk=0.0.0.0 index.js",
+    "test": "jest --coverage --verbose=true test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k33rs/currency-converter.git"
+  },
+  "author": "Michele Chersich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k33rs/currency-converter/issues"
+  },
+  "homepage": "https://github.com/k33rs/currency-converter#readme",
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "@hapi/joi-date": "^2.0.1",
+    "axios": "^0.19.2",
+    "bignumber.js": "^9.0.0",
+    "celebrate": "^12.0.1",
+    "express": "^4.17.1",
+    "ioredis": "^4.16.0",
+    "node-cron": "^2.0.3",
+    "xml2json": "^0.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^25.1.0"
+  }
+}

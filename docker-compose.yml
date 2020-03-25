@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  app:
+    build: .
+    depends_on:
+    - redis
+    environment:
+    - "CRON=5 16 * * 1-5"
+    - CRONTZ=Europe/Rome
+    - RATES_API=https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml
+    - REDIS_HOST=redis
+    - REDIS_TTL=90000
+    - REF_CURRENCY=EUR
+    ports:
+    - 8080:8080
+    restart: always
+  
+  redis:
+    image: redis:5
+    container_name: redis
+    command: redis-server --appendonly yes
+    restart: always
+    volumes:
+    - $PWD/.docker/redis:/data
